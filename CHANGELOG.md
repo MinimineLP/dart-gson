@@ -2,7 +2,7 @@
 
 ## 0.1.1
 
-* Fixes in Readme and naming
+* Fixes in Readme and codestyle (no new features)
 
 ## 0.1.0
 
