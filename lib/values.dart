@@ -1,4 +1,4 @@
-library GsonValues;
+library gson_values;
 
 import 'package:gson/prog.dart';
 

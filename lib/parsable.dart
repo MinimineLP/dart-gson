@@ -1,4 +1,4 @@
-library GsonParsable;
+library gson_parsable;
 
 import 'dart:io';
 

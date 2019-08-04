@@ -1,4 +1,4 @@
-library Gson;
+library gson;
  
 import 'package:gson/decoder.dart';
 import 'package:gson/encoder.dart';

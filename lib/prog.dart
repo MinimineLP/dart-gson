@@ -1,4 +1,4 @@
-library prog;
+library gson_prog;
 
 /// Error generator
 class ErrorGenerator {

@@ -1,4 +1,4 @@
-library GsonEncoder;
+library gson_encoder;
 
 import 'dart:convert';
 
