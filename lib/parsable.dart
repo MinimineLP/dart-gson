@@ -1,9 +1,11 @@
+library GsonParsable;
+
 import 'dart:io';
 
 import 'package:colorize/colorize.dart';
 import 'package:gson/prog.dart';
 
-class GSONParsable extends ErrorGenerator {
+class GsonParsable extends ErrorGenerator {
 
   String _parsable;
   int _position = 0;
@@ -13,44 +15,57 @@ class GSONParsable extends ErrorGenerator {
   int get position => _position;
   bool get ended => _ended;
 
-  GSONParsable(this._parsable, {int position = 0}) {
+  GsonParsable(this._parsable, {int position = 0}) {
     this._position = position;
   }
   
+  /// Get actual and go one forward
   String next() {
-    if(ended) throw error("Input ended");
-    _position++;
-    _checkEnded();
+    skip();
     return parsable.substring(position - 1,position);
   }
 
+  /// Skip one
   void skip() {
-    if(ended) throw error("Input ended");
+    if(ended) { throw error("Input ended"); }
     this._position += 1;
     _checkEnded();
   }
 
+  /// Go Steps back
   void goBack(int number) {
     this._position -= number;
-    if(_position < 0) _position = 0;
+    if(_position < 0) { _position = 0; }
     _checkEnded();
   }
 
-  String actual() => parsable.substring(position,position + 1);
-  String peek(int number) => has(number) ? parsable.substring(position + number,position + number + 1) : throw error("Not enough space to peek $number");
-  bool hasNext() => has(1);
-  bool has(int space) => parsable.length > position + space;
-  Exception error(String message,{int from = 0, int to = 0}) => Exception(message + " at " +toString(from: from, to: to, err: true));
-  Exception reformatError(Exception e, [StackTrace stack]) => Exception(e.toString().substring(10) + "at " +toString() + (stack != null ? stack.toString() : ""));
+  /// Get actual
+  String actual() { return parsable.substring(position,position + 1); }
+
+  /// peek forward
+  String peek(int number) { return has(number) ? parsable.substring(position + number,position + number + 1) : throw error("Not enough space to peek $number"); }
+
+  /// test if has next symbol
+  bool hasNext() { return has(1); }
+
+  /// test if has amount of symbols left
+  bool has(int space) { return parsable.length > position + space; }
+
+  /// generate a error at the position of the parsable
+  Exception error(String message,{int from = 0, int to = 0}) { return Exception(message + " at " +toString(from: from, to: to, err: true)); }
   
+  /// reformat error
+  Exception reformatError(Exception e, [StackTrace stack]) { return Exception(e.toString().substring(10) + "at " +toString() + (stack != null ? stack.toString() : "")); }
+  
+  /// String representation of parsable (marks actual position)
   @override
   String toString({int from = 0, int to = 0, bool err = false}) {
     if(parsable.length > stdout.terminalColumns) {
       int start = parsable.length > stdout.terminalColumns ? (position - (stdout.terminalColumns / 2) + 3).round() : 0;
       int end = parsable.length > stdout.terminalColumns ? (position + (stdout.terminalColumns / 2) - 4).round() : parsable.length - 1;
 
-      if(start < 0) {end += start * -1;start = 0;}
-      if(end >= parsable.length) {start -= end - parsable.length + 1;end = parsable.length - 1;}
+      if(start < 0) { end += start * -1;start = 0; }
+      if(end >= parsable.length) { start -= end - parsable.length + 1;end = parsable.length - 1; }
 
       String startletters = "(+$start)", startletters_;
       String endletters = "(+${parsable.length - end + 7})", endletters_;
@@ -59,16 +74,16 @@ class GSONParsable extends ErrorGenerator {
       do {
         endletters_  = endletters;
         startletters = "(+$end)";
-        if(endletters.length - endletters_.length > 0) end -= endletters.length - endletters_.length;
+        if(endletters.length - endletters_.length > 0) { end -= endletters.length - endletters_.length; }
       } while (endletters_.length != endletters.length);
 
       do {
         startletters_  = startletters;
         startletters = "(+$start)";
-        if(startletters.length - startletters_.length > 0) end -= startletters.length - startletters_.length;
+        if(startletters.length - startletters_.length > 0) { end -= startletters.length - startletters_.length; }
       } while (startletters_.length != startletters.length);
 
-      if(start < 0) {end += start * -1;start = 0;}
+      if(start < 0) { end += start * -1;start = 0; }
 
       int pos = this.position - start + startletters.length + 3;
       String code = "$startletters..." + parsable.substring(start,end) + "...$endletters\n";
@@ -102,9 +117,9 @@ class GSONParsable extends ErrorGenerator {
 
   String _repeatString(String s, int number) {
     String ret = "";
-    for(int i = 0; i < number; i++) ret += s;
+    for(int i = 0; i < number; i++) { ret += s; }
     return ret;
   }
   
-  void _checkEnded() => this._ended = this.position >= this.parsable.length - 1;
+  void _checkEnded() { this._ended = this.position >= this.parsable.length - 1; }
 }

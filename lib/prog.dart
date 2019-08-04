@@ -1,4 +1,11 @@
-// Error generator
+library prog;
+
+/// Error generator
 class ErrorGenerator {
-  Exception error(String error) => Exception(error);
+
+  /// Error generator
+  ErrorGenerator();
+
+  /// Generate error
+  Exception error(String error) { return Exception(error); }
 }
