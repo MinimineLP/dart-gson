@@ -101,7 +101,10 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Exception error(String message,{int from = 0, int to = 0}) { return Exception(message + &quot; at &quot; +toString(from: from, to: to, err: true)); }</code></pre>
+      <pre class="language-dart"><code class="language-dart">Exception error(String message, {int from = 0, int to = 0}) {
+  return Exception(
+      message + &quot; at &quot; + toString(from: from, to: to, err: true));
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -113,7 +116,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

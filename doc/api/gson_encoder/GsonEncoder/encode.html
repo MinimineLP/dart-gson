@@ -63,6 +63,7 @@
       <li class="inherited"><a href="gson_encoder/GsonEncoder/runtimeType.html">runtimeType</a></li>
     
       <li class="section-title"><a href="gson_encoder/GsonEncoder-class.html#instance-methods">Methods</a></li>
+      <li><a href="gson_encoder/GsonEncoder/beautyEncode.html">beautyEncode</a></li>
       <li><a href="gson_encoder/GsonEncoder/encode.html">encode</a></li>
       <li class="inherited"><a href="gson_encoder/GsonEncoder/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="gson_encoder/GsonEncoder/toString.html">toString</a></li>
@@ -81,7 +82,7 @@
     <section class="multi-line-signature">
       <span class="returntype">String</span>
             <span class="name ">encode</span>
-(<wbr><span class="parameter" id="encode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span></span>)
+(<wbr><span class="parameter" id="encode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="encode-param-beautify"><span class="type-annotation">bool</span> <span class="parameter-name">beautify</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="encode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span></span> })
       
     </section>
     <section class="desc markdown">
@@ -90,18 +91,29 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">String encode(dynamic obj) {
-  if(obj is bool) { return obj ? &quot;1b&quot; : &quot;0b&quot;; }
-  if(obj is double) { return obj.toString()+&quot;d&quot;; }
-  if(obj is CustomValue) { return obj.toString(); }
-  if(obj is List) {
-    List&lt;String&gt; cont = [];
-    obj.forEach((e) { cont.add(encode(e)); });
-    return &quot;[&quot;+cont.join(&quot;,&quot;)+&quot;]&quot;;
+      <pre class="language-dart"><code class="language-dart">String encode(dynamic obj, {bool beautify = false, int indent = 2}) {
+  if (beautify) return beautyEncode(obj, indent: indent).join(&quot;\n&quot;);
+  if (obj is bool) {
+    return obj ? &quot;1b&quot; : &quot;0b&quot;;
   }
-  if(obj is Map) {
+  if (obj is double) {
+    return obj.toString() + &quot;d&quot;;
+  }
+  if (obj is CustomValue) {
+    return obj.toString();
+  }
+  if (obj is List) {
     List&lt;String&gt; cont = [];
-    obj.forEach((k,v) { cont.add(&quot;${k}:${encode(v)}&quot;); });
+    obj.forEach((e) {
+      cont.add(encode(e));
+    });
+    return &quot;[&quot; + cont.join(&quot;,&quot;) + &quot;]&quot;;
+  }
+  if (obj is Map) {
+    List&lt;String&gt; cont = [];
+    obj.forEach((k, v) {
+      cont.add(&quot;${k}:${encode(v)}&quot;);
+    });
     return &quot;{&quot; + cont.join(&quot;,&quot;) + &quot;}&quot;;
   }
   return json.encode(obj);
@@ -117,7 +129,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

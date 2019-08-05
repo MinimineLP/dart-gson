@@ -16,7 +16,7 @@ file
 
 ```yaml
 dependencies:
-  gson: ^0.1.1
+  gson: ^0.1.2
 ```
 
 And to import use
@@ -61,6 +61,8 @@ gson.decode("1b").boolValue // >> true (and 0b will be false)
 ```
 
 The program can't find the difference between the number 1 and true / the number 0 / false, because in the code it is the same.
+
+For more examples see [example/example.dart](https://github.com/MinimineLP/dart-gson/blob/master/example/example.dart)
 
 ## License
 

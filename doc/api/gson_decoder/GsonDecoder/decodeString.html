@@ -95,26 +95,39 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">String decodeString(dynamic src) {
-  GsonParsable p = src is GsonParsable ? src : src is String ? new GsonParsable(src) : throw (&quot;The src is not a valid input to decode an Array from&quot;);
+  GsonParsable p = src is GsonParsable
+      ? src
+      : src is String
+          ? new GsonParsable(src)
+          : throw (&quot;The src is not a valid input to decode an Array from&quot;);
 
   String str = &#39;&quot;&#39;;
 
-  if(p.actual() == &quot;\&quot;&quot; || p.actual() == &quot;\&#39;&quot;) {
+  if (p.actual() == &quot;\&quot;&quot; || p.actual() == &quot;\&#39;&quot;) {
     String search = p.next();
-    while(p.actual() != search) {
-      if(p.actual() == &quot;\\&quot;) { str += p.next(); }
-      else if(p.actual() == &quot;\&quot;&quot;) { str += &quot;\\&quot; + p.next(); continue; }
+    while (p.actual() != search) {
+      if (p.actual() == &quot;\\&quot;) {
+        str += p.next();
+      } else if (p.actual() == &quot;\&quot;&quot;) {
+        str += &quot;\\&quot; + p.next();
+        continue;
+      }
       str += p.next();
     }
-    if(!p.ended){ p.skip(); }
-  }
-  else if(_PURE_STRING.hasMatch(p.actual())) {
-    while(_PURE_STRING.hasMatch(p.actual())) {
-      if(p.actual() == &quot;\\&quot;) { str += p.next(); }
+    if (!p.ended) {
+      p.skip();
+    }
+  } else if (_PURE_STRING.hasMatch(p.actual())) {
+    while (_PURE_STRING.hasMatch(p.actual())) {
+      if (p.actual() == &quot;\\&quot;) {
+        str += p.next();
+      }
       str += p.next();
     }
+  } else {
+    throw p.error(
+        &quot;String has to start with a \&quot;\\\&quot;\&quot; or \&quot;\\\&#39;\&quot; when it contains some characters&quot;);
   }
-  else { throw p.error(&quot;String has to start with a \&quot;\\\&quot;\&quot; or \&quot;\\\&#39;\&quot; when it contains some characters&quot;); }
 
   return json.decode(str + &#39;&quot;&#39;);
 }</code></pre>
@@ -129,7 +142,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

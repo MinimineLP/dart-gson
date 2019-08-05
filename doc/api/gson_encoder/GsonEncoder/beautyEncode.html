@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the toString method from the GsonEncoder class, for the Dart programming language.">
-  <title>toString method - GsonEncoder class - gson_encoder library - Dart API</title>
+  <meta name="description" content="API docs for the beautyEncode method from the GsonEncoder class, for the Dart programming language.">
+  <title>beautyEncode method - GsonEncoder class - gson_encoder library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -27,9 +27,9 @@
     <li><a href="index.html">gson</a></li>
     <li><a href="gson_encoder/gson_encoder-library.html">gson_encoder</a></li>
     <li><a href="gson_encoder/GsonEncoder-class.html">GsonEncoder</a></li>
-    <li class="self-crumb">toString method</li>
+    <li class="self-crumb">beautyEncode method</li>
   </ol>
-  <div class="self-name">toString</div>
+  <div class="self-name">beautyEncode</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="index.html">gson</a></li>
       <li><a href="gson_encoder/gson_encoder-library.html">gson_encoder</a></li>
       <li><a href="gson_encoder/GsonEncoder-class.html">GsonEncoder</a></li>
-      <li class="self-crumb">toString method</li>
+      <li class="self-crumb">beautyEncode method</li>
     </ol>
     
     <h5>GsonEncoder class</h5>
@@ -77,22 +77,65 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div>  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/dart-lang/sdk/blob/7340a569caac6431d8698dc3788579b57ffcf0c6/sdk/lib/core/object.dart#L97"><i class="material-icons">description</i></a></div>
-<h1><span class="kind-method">toString</span> method</h1></div>
+      <div><h1><span class="kind-method">beautyEncode</span> method</h1></div>
 
     <section class="multi-line-signature">
-      <span class="returntype">String</span>
-            <span class="name ">toString</span>
-(<wbr>)
-      <div class="features">inherited</div>
-    </section>
-    <section class="desc markdown">
-      <p>Returns a string representation of this object.</p>
+      <span class="returntype">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+            <span class="name ">beautyEncode</span>
+(<wbr><span class="parameter" id="beautyEncode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="beautyEncode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span></span> })
+      
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">external String toString();</code></pre>
+      <pre class="language-dart"><code class="language-dart">List&lt;String&gt; beautyEncode(dynamic obj, {int indent = 2}) {
+  if (obj is bool) {
+    return [obj ? &quot;1b&quot; : &quot;0b&quot;];
+  }
+  if (obj is double) {
+    return [obj.toString() + &quot;d&quot;];
+  }
+  if (obj is CustomValue) {
+    return [obj.toString()];
+  }
+  if (obj is List) {
+    if (obj.length == 0) return [&quot;[]&quot;];
+    List&lt;String&gt; cont = [&quot;[&quot;];
+    for (int c = 0; c &lt; obj.length; c++) {
+      List&lt;String&gt; e = beautyEncode(obj[c]);
+      for (int i = 0; i &lt; e.length; i++) {
+        cont.add(_repeatString(&quot; &quot;, indent) +
+            e[i] +
+            (i == e.length - 1 &amp;&amp; c &lt; obj.length - 1 ? &quot;,&quot; : &quot;&quot;));
+      }
+    }
+    cont.add(&quot;]&quot;);
+    return cont;
+  }
+  if (obj is Map) {
+    if (obj.length == 0) return [&quot;{}&quot;];
+    List&lt;String&gt; cont = [&quot;{&quot;];
+    int c = 0;
+    obj.forEach((k, v) {
+      List&lt;String&gt; e = beautyEncode(v);
+      for (int i = 0; i &lt; e.length; i++) {
+        cont.add(_repeatString(&quot; &quot;, indent) +
+            (i == 0 ? k + &quot;: &quot; : &quot;&quot;) +
+            e[i] +
+            (i == e.length - 1 &amp;&amp; c &lt; obj.length - 1 ? &quot;,&quot; : &quot;&quot;));
+      }
+      c++;
+    });
+    cont.add(&quot;}&quot;);
+    &#47;*
+    beautyEncode(v).forEach((e) =&gt; cont.add(_repeatString(&quot; &quot;, indent) + e));});
+      cont.add(&quot;${k}:${encode(v)}&quot;);
+    cont.add(&quot;}&quot;);
+    *&#47;
+    return cont;
+  }
+  return [json.encode(obj)];
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

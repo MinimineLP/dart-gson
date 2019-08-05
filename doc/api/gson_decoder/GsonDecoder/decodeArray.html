@@ -95,24 +95,38 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">List&lt;dynamic&gt; decodeArray(dynamic src) {
-  GsonParsable p = src is GsonParsable ? src : src is String ? new GsonParsable(src) : throw (&quot;The src is not a valid input to decode an Array from&quot;);
+  GsonParsable p = src is GsonParsable
+      ? src
+      : src is String
+          ? new GsonParsable(src)
+          : throw (&quot;The src is not a valid input to decode an Array from&quot;);
   List&lt;dynamic&gt; arr = [];
   bool foundComma = true;
-  if(p.next() != &quot;[&quot;) { throw p.error(&quot;Array has to start with a [&quot;); }
-  while(p.actual() != &quot;]&quot;) {
-    if(!foundComma) { throw p.error(&quot;Expected \&quot;]\&quot; or \&quot;,\&quot;&quot;); }
+  if (p.next() != &quot;[&quot;) {
+    throw p.error(&quot;Array has to start with a [&quot;);
+  }
+  while (p.actual() != &quot;]&quot;) {
+    if (!foundComma) {
+      throw p.error(&quot;Expected \&quot;]\&quot; or \&quot;,\&quot;&quot;);
+    }
     foundComma = false;
     _skipIgnored(p);
-    if(new RegExp(r&#39;&#39;&#39;[\\[\\{\\\&quot;\\\&#39;0-9]&#39;&#39;&#39;).hasMatch(p.actual()) || _PURE_STRING.hasMatch(p.actual())) { arr.add(decode(p)); }
-    else { throw p.error(&#39;Expected &quot;[&quot;, &quot;\\&quot;&quot;,&quot;\\\&#39;&quot;, &quot;{&quot; or a number&#39;); }
+    if (new RegExp(r&#39;&#39;&#39;[\\[\\{\\\&quot;\\\&#39;0-9]&#39;&#39;&#39;).hasMatch(p.actual()) ||
+        _PURE_STRING.hasMatch(p.actual())) {
+      arr.add(decode(p));
+    } else {
+      throw p.error(&#39;Expected &quot;[&quot;, &quot;\\&quot;&quot;,&quot;\\\&#39;&quot;, &quot;{&quot; or a number&#39;);
+    }
     _skipIgnored(p);
-    if(p.actual() == &quot;,&quot;) {
+    if (p.actual() == &quot;,&quot;) {
       foundComma = true;
       p.skip();
     }
     _skipIgnored(p);
   }
-  if(!p.ended){ p.skip(); }
+  if (!p.ended) {
+    p.skip();
+  }
   return arr;
 }</code></pre>
     </section>
@@ -126,7 +140,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

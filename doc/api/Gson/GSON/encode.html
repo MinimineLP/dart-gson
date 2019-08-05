@@ -84,18 +84,27 @@
     <section class="multi-line-signature">
       <span class="returntype">String</span>
             <span class="name ">encode</span>
-(<wbr><span class="parameter" id="encode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span></span>)
+(<wbr><span class="parameter" id="encode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="encode-param-beautify"><span class="type-annotation">bool</span> <span class="parameter-name">beautify</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="encode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span></span> })
       
     </section>
     <section class="desc markdown">
       <p>Encode gson</p>
 <pre class="language-dart"><code class="language-dart">gson.encode({"hello": "world"}) // &gt;&gt; {hello: "world"}
 </code></pre>
+<p>for beautier gson</p>
+<pre class="language-dart"><code class="language-dart">gson.encode({"hello": "world"},beautify: true);
+// &gt;&gt; {
+// &gt;&gt;   hello: "world"
+// &gt;&gt; }
+</code></pre>
+<p>You can also set the indent (the amount of spaces the gson is indented with)</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">String encode(dynamic obj) { return encoder.encode(obj); }</code></pre>
+      <pre class="language-dart"><code class="language-dart">String encode(dynamic obj, {bool beautify = false, int indent = 2}) {
+  return encoder.encode(obj, beautify: beautify, indent: indent);
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -107,7 +116,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

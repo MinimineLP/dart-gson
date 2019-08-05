@@ -95,14 +95,25 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">dynamic decode(dynamic gson) {
+  GsonParsable p = gson is GsonParsable
+      ? gson
+      : gson is String
+          ? new GsonParsable(gson)
+          : throw (&quot;The gson is not a valid input to decode an Array from&quot;);
 
-  GsonParsable p = gson is GsonParsable ? gson : gson is String ? new GsonParsable(gson) : throw (&quot;The gson is not a valid input to decode an Array from&quot;);
-
-  if(p.actual() == &quot;{&quot;) { return decodeMap(p); }
-  else if(p.actual() == &quot;[&quot;) { return decodeArray(p); }
-  else if(new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) { return decodeNumber(p); }
-  else if(p.actual() == &quot;\&quot;&quot; || p.actual() == &quot;&#39;&quot; || _PURE_STRING.hasMatch(p.actual())) { return decodeString(p); }
-  else { throw p.error(&quot;Unexpected character &quot;+p.actual()); }
+  if (p.actual() == &quot;{&quot;) {
+    return decodeMap(p);
+  } else if (p.actual() == &quot;[&quot;) {
+    return decodeArray(p);
+  } else if (new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) {
+    return decodeNumber(p);
+  } else if (p.actual() == &quot;\&quot;&quot; ||
+      p.actual() == &quot;&#39;&quot; ||
+      _PURE_STRING.hasMatch(p.actual())) {
+    return decodeString(p);
+  } else {
+    throw p.error(&quot;Unexpected character &quot; + p.actual());
+  }
 }</code></pre>
     </section>
 
@@ -115,7 +126,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

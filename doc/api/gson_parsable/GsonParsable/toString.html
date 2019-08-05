@@ -108,59 +108,92 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 String toString({int from = 0, int to = 0, bool err = false}) {
-  if(parsable.length &gt; stdout.terminalColumns) {
-    int start = parsable.length &gt; stdout.terminalColumns ? (position - (stdout.terminalColumns &#47; 2) + 3).round() : 0;
-    int end = parsable.length &gt; stdout.terminalColumns ? (position + (stdout.terminalColumns &#47; 2) - 4).round() : parsable.length - 1;
+  if (parsable.length &gt; stdout.terminalColumns) {
+    int start = parsable.length &gt; stdout.terminalColumns
+        ? (position - (stdout.terminalColumns &#47; 2) + 3).round()
+        : 0;
+    int end = parsable.length &gt; stdout.terminalColumns
+        ? (position + (stdout.terminalColumns &#47; 2) - 4).round()
+        : parsable.length - 1;
 
-    if(start &lt; 0) { end += start * -1;start = 0; }
-    if(end &gt;= parsable.length) { start -= end - parsable.length + 1;end = parsable.length - 1; }
+    if (start &lt; 0) {
+      end += start * -1;
+      start = 0;
+    }
+    if (end &gt;= parsable.length) {
+      start -= end - parsable.length + 1;
+      end = parsable.length - 1;
+    }
 
     String startletters = &quot;(+$start)&quot;, startletters_;
     String endletters = &quot;(+${parsable.length - end + 7})&quot;, endletters_;
     end -= endletters.length + startletters.length;
 
     do {
-      endletters_  = endletters;
+      endletters_ = endletters;
       startletters = &quot;(+$end)&quot;;
-      if(endletters.length - endletters_.length &gt; 0) { end -= endletters.length - endletters_.length; }
+      if (endletters.length - endletters_.length &gt; 0) {
+        end -= endletters.length - endletters_.length;
+      }
     } while (endletters_.length != endletters.length);
 
     do {
-      startletters_  = startletters;
+      startletters_ = startletters;
       startletters = &quot;(+$start)&quot;;
-      if(startletters.length - startletters_.length &gt; 0) { end -= startletters.length - startletters_.length; }
+      if (startletters.length - startletters_.length &gt; 0) {
+        end -= startletters.length - startletters_.length;
+      }
     } while (startletters_.length != startletters.length);
 
-    if(start &lt; 0) { end += start * -1;start = 0; }
+    if (start &lt; 0) {
+      end += start * -1;
+      start = 0;
+    }
 
     int pos = this.position - start + startletters.length + 3;
-    String code = &quot;$startletters...&quot; + parsable.substring(start,end) + &quot;...$endletters\n&quot;;
+    String code = &quot;$startletters...&quot; +
+        parsable.substring(start, end) +
+        &quot;...$endletters\n&quot;;
 
-    String beforeSelect = code.substring(0,pos - from);
-    Colorize selected = new Colorize(code.substring(pos - from, pos + to + 1));
+    String beforeSelect = code.substring(0, pos - from);
+    Colorize selected =
+        new Colorize(code.substring(pos - from, pos + to + 1));
     String afterSelect = code.substring(pos + to + 1);
 
-    Colorize bottom = new Colorize(_repeatString(&quot; &quot;,pos - from) + _repeatString(&quot;^&quot;,1 + from + to) + &quot;\n&quot;);
-    if(err) {
+    Colorize bottom = new Colorize(_repeatString(&quot; &quot;, pos - from) +
+        _repeatString(&quot;^&quot;, 1 + from + to) +
+        &quot;\n&quot;);
+    if (err) {
       bottom.red();
       selected.bgRed();
     }
 
-    return &quot;position ${position + 1}&#47;${parsable.length} (\&quot;${actual()}\&quot;)\n\nHere:\n&quot; + beforeSelect + selected.toString() + afterSelect + bottom.toString();
+    return &quot;position ${position + 1}&#47;${parsable.length} (\&quot;${actual()}\&quot;)\n\nHere:\n&quot; +
+        beforeSelect +
+        selected.toString() +
+        afterSelect +
+        bottom.toString();
   }
 
-  String beforeSelect = parsable.substring(0,position - from);
-  Colorize selected = new Colorize(parsable.substring(position - from, position + to + 1));
+  String beforeSelect = parsable.substring(0, position - from);
+  Colorize selected =
+      new Colorize(parsable.substring(position - from, position + to + 1));
   String afterSelect = parsable.substring(position + to + 1);
 
-  Colorize bottom = new Colorize(_repeatString(&quot; &quot;,position - from) + _repeatString(&quot;^&quot;,1 + from + to) + &quot;\n&quot;);
-  if(err) {
+  Colorize bottom = new Colorize(_repeatString(&quot; &quot;, position - from) +
+      _repeatString(&quot;^&quot;, 1 + from + to) +
+      &quot;\n&quot;);
+  if (err) {
     bottom.red();
     selected.bgRed();
   }
 
-
-  return &quot;position ${position + 1}&#47;${parsable.length} (\&quot;${actual()}\&quot;)\n\nHere:\n&quot; + beforeSelect + selected.toString() + afterSelect + &quot;\n&quot; + bottom.toString();
+  return &quot;position ${position + 1}&#47;${parsable.length} (\&quot;${actual()}\&quot;)\n\nHere:\n&quot; +
+      beforeSelect +
+      selected.toString() +
+      afterSelect +
+      &quot;\n&quot; +
+      bottom.toString();
 }</code></pre>
     </section>
 
@@ -173,7 +206,7 @@ String toString({int from = 0, int to = 0, bool err = false}) {
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

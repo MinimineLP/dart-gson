@@ -95,20 +95,55 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">NumberValue decodeNumber(dynamic src) {
-  GsonParsable p = src is GsonParsable ? src : src is String ? new GsonParsable(src) : throw (&quot;The src is not a valid input to decode an Array from&quot;);
-  if(!new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) { throw p.error(&quot;Any number has to start with a number between 0 and 9&quot;); }
+  GsonParsable p = src is GsonParsable
+      ? src
+      : src is String
+          ? new GsonParsable(src)
+          : throw (&quot;The src is not a valid input to decode an Array from&quot;);
+  if (!new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) {
+    throw p.error(&quot;Any number has to start with a number between 0 and 9&quot;);
+  }
   String number = &quot;&quot;;
-  while(new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) { number += p.next(); }
+  while (new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) {
+    number += p.next();
+  }
 
   NumberValue ret;
 
-  switch(p.actual()) {
-    case &quot;b&quot;: ret = new Byte  (num.parse(number)); if(!p.ended){ p.skip(); } break;
-    case &quot;s&quot;: ret = new Short (num.parse(number)); if(!p.ended){ p.skip(); } break;
-    case &quot;l&quot;: ret = new Long  (num.parse(number)); if(!p.ended){ p.skip(); } break;
-    case &quot;f&quot;: ret = new Float (num.parse(number)); if(!p.ended){ p.skip(); } break;
-    case &quot;d&quot;: ret = new Double(num.parse(number)); if(!p.ended){ p.skip(); } break;
-    default:  ret = new Integer(num.parse(number)); break;
+  switch (p.actual()) {
+    case &quot;b&quot;:
+      ret = new Byte(num.parse(number));
+      if (!p.ended) {
+        p.skip();
+      }
+      break;
+    case &quot;s&quot;:
+      ret = new Short(num.parse(number));
+      if (!p.ended) {
+        p.skip();
+      }
+      break;
+    case &quot;l&quot;:
+      ret = new Long(num.parse(number));
+      if (!p.ended) {
+        p.skip();
+      }
+      break;
+    case &quot;f&quot;:
+      ret = new Float(num.parse(number));
+      if (!p.ended) {
+        p.skip();
+      }
+      break;
+    case &quot;d&quot;:
+      ret = new Double(num.parse(number));
+      if (!p.ended) {
+        p.skip();
+      }
+      break;
+    default:
+      ret = new Integer(num.parse(number));
+      break;
   }
 
   return ret;
@@ -124,7 +159,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

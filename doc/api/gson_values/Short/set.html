@@ -94,7 +94,8 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void set(int v) {
-  if(v &gt; 32767 || v &lt; -32768) throw this._gen.error(&quot;Byte must be between -32768 and 32767&quot;);
+  if (v &gt; 32767 || v &lt; -32768)
+    throw this._gen.error(&quot;Byte must be between -32768 and 32767&quot;);
   this._number = v;
 }</code></pre>
     </section>
@@ -108,7 +109,7 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.0
+    gson 0.1.2
   </span>
 
   

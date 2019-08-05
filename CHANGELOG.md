@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+* Added beauty gson generation (customizable)
+* Improved examples
+* Fixes in Readme and codestyle
+
 ## 0.1.1
 
 * Fixes in Readme and codestyle (no new features)
