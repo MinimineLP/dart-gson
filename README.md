@@ -8,7 +8,7 @@ Website (github pages): [https://miniminelp.github.io/dart-gson/](https://minimi
 
 Repository (github): [https://github.com/MinimineLP/dart-gson](https://github.com/MinimineLP/dart-gson)
 
-View dart docs: [https://miniminelp.github.io/dart-gson/doc/api/gson/gson-library.html](https://pub.dev/documentation/gson/latest/)
+View dart docs: [https://miniminelp.github.io/dart-gson/doc/api/gson/gson-library.html](https://miniminelp.github.io/dart-gson/doc/api/gson/gson-library.html)
 
 View on pub: [https://pub.dev/packages/gson](https://pub.dev/packages/gson)
 
