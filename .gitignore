@@ -3,3 +3,5 @@ pubspec.lock
 .packages
 .testing
 .vscode
+/.dart_tool
+_config.yml
