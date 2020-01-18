@@ -1,6 +1,6 @@
 library gson_parsable;
 
-import 'dart:io';
+import 'terminal_web.dart' if (dart.library.io) 'terminal_vm.dart' as io;
 
 import 'package:colorize/colorize.dart';
 import 'package:gson/prog.dart';
@@ -81,12 +81,12 @@ class GsonParsable extends ErrorGenerator {
   /// String representation of parsable (marks actual position)
   @override
   String toString({int from = 0, int to = 0, bool err = false}) {
-    if (parsable.length > stdout.terminalColumns) {
-      int start = parsable.length > stdout.terminalColumns
-          ? (position - (stdout.terminalColumns / 2) + 3).round()
+    if (parsable.length > io.terminalColumns) {
+      int start = parsable.length > io.terminalColumns
+          ? (position - (io.terminalColumns / 2) + 3).round()
           : 0;
-      int end = parsable.length > stdout.terminalColumns
-          ? (position + (stdout.terminalColumns / 2) - 4).round()
+      int end = parsable.length > io.terminalColumns
+          ? (position + (io.terminalColumns / 2) - 4).round()
           : parsable.length - 1;
 
       if (start < 0) {
