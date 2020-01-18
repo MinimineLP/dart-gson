@@ -129,7 +129,7 @@ class Long extends NumberValue {
 
   /// the long value (number from -9223372036854775808 to 9223372036854775807)
   void set(int v) {
-    if (v > 9223372036854775807 || v < -9223372036854775808)
+    if (v > 9007199254740991 || v < -9007199254740991)
       throw this._gen.error(
           "Byte must be between -9223372036854775808 and 9223372036854775807");
     this._number = v;
