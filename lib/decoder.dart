@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:gson/gson.dart';
 
+/// The Gson Decoder class recreates the content from a gson string
 class GsonDecoder {
   static RegExp _KEY_CHARACTERS = new RegExp(r"\w");
   static RegExp _IGNORED = new RegExp(r"[ \t\r\n]");

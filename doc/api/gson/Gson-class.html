@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the GSON class from the gson library, for the Dart programming language.">
-  <title>GSON class - gson library - Dart API</title>
+  <meta name="description" content="API docs for the Gson class from the gson library, for the Dart programming language.">
+  <title>Gson class - gson library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -26,9 +26,9 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">gson</a></li>
     <li><a href="gson/gson-library.html">gson</a></li>
-    <li class="self-crumb">GSON class</li>
+    <li class="self-crumb">Gson class</li>
   </ol>
-  <div class="self-name">GSON</div>
+  <div class="self-name">Gson</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,7 +46,7 @@
     <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
       <li><a href="index.html">gson</a></li>
       <li><a href="gson/gson-library.html">gson</a></li>
-      <li class="self-crumb">GSON class</li>
+      <li class="self-crumb">Gson class</li>
     </ol>
     
     <h5>gson library</h5>
@@ -56,14 +56,16 @@
       <li><a href="gson_values/CustomValue-class.html">CustomValue</a></li>
       <li><a href="gson_values/Double-class.html">Double</a></li>
       <li><a href="gson_values/Float-class.html">Float</a></li>
-      <li><a href="gson/GSON-class.html">GSON</a></li>
+      <li><a href="gson/Gson-class.html">Gson</a></li>
       <li><a href="gson_decoder/GsonDecoder-class.html">GsonDecoder</a></li>
       <li><a href="gson_encoder/GsonEncoder-class.html">GsonEncoder</a></li>
       <li><a href="gson_parsable/GsonParsable-class.html">GsonParsable</a></li>
+      <li><a href="gson_values/GsonValue-class.html">GsonValue</a></li>
       <li><a href="gson_values/Integer-class.html">Integer</a></li>
       <li><a href="gson_values/Long-class.html">Long</a></li>
       <li><a href="gson_values/NumberValue-class.html">NumberValue</a></li>
       <li><a href="gson_values/Short-class.html">Short</a></li>
+    
     
     
     
@@ -80,7 +82,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-class">GSON</span> class </h1></div>
+      <div><h1><span class="kind-class">Gson</span> class </h1></div>
 
     
 
@@ -88,8 +90,8 @@
       <h2>Constructors</h2>
 
       <dl class="constructor-summary-list">
-        <dt id="GSON" class="callable">
-          <span class="name"><a href="gson/GSON/GSON.html">GSON</a></span><span class="signature">()</span>
+        <dt id="Gson" class="callable">
+          <span class="name"><a href="gson/Gson/Gson.html">Gson</a></span><span class="signature">()</span>
         </dt>
         <dd>
           The adapter to decode and encode gson
@@ -102,7 +104,7 @@
 
       <dl class="properties">
         <dt id="decoder" class="property">
-          <span class="name"><a href="gson/GSON/decoder.html">decoder</a></span>
+          <span class="name"><a href="gson/Gson/decoder.html">decoder</a></span>
           <span class="signature">&#8596; <a href="gson_decoder/GsonDecoder-class.html">GsonDecoder</a></span>         
         </dt>
         <dd>
@@ -110,7 +112,7 @@
                   <div class="features">read / write</div>
 </dd>
         <dt id="encoder" class="property">
-          <span class="name"><a href="gson/GSON/encoder.html">encoder</a></span>
+          <span class="name"><a href="gson/Gson/encoder.html">encoder</a></span>
           <span class="signature">&#8596; <a href="gson_encoder/GsonEncoder-class.html">GsonEncoder</a></span>         
         </dt>
         <dd>
@@ -118,15 +120,15 @@
                   <div class="features">read / write</div>
 </dd>
         <dt id="hashCode" class="property inherited">
-          <span class="name"><a href="gson/GSON/hashCode.html">hashCode</a></span>
+          <span class="name"><a href="gson/Gson/hashCode.html">hashCode</a></span>
           <span class="signature">&#8594; int</span>         
         </dt>
         <dd class="inherited">
-          The hash code for this object. <a href="gson/GSON/hashCode.html">[...]</a>
+          The hash code for this object. <a href="gson/Gson/hashCode.html">[...]</a>
                   <div class="features">read-only, inherited</div>
 </dd>
         <dt id="runtimeType" class="property inherited">
-          <span class="name"><a href="gson/GSON/runtimeType.html">runtimeType</a></span>
+          <span class="name"><a href="gson/Gson/runtimeType.html">runtimeType</a></span>
           <span class="signature">&#8594; Type</span>         
         </dt>
         <dd class="inherited">
@@ -140,34 +142,45 @@
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="decode" class="callable">
-          <span class="name"><a href="gson/GSON/decode.html">decode</a></span><span class="signature">(<wbr><span class="parameter" id="decode-param-gson"><span class="type-annotation">String</span> <span class="parameter-name">gson</span></span>)
+          <span class="name"><a href="gson/Gson/decode.html">decode</a></span><span class="signature">(<wbr><span class="parameter" id="decode-param-gson"><span class="type-annotation">String</span> <span class="parameter-name">gson</span>, {</span> <span class="parameter" id="decode-param-simplify"><span class="type-annotation">dynamic</span> <span class="parameter-name">simplify</span>: <span class="default-value">false</span></span> })
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
         <dd>
-          Decode gson <a href="gson/GSON/decode.html">[...]</a>
+          Decode gson <a href="gson/Gson/decode.html">[...]</a>
                   
 </dd>
         <dt id="encode" class="callable">
-          <span class="name"><a href="gson/GSON/encode.html">encode</a></span><span class="signature">(<wbr><span class="parameter" id="encode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="encode-param-beautify"><span class="type-annotation">bool</span> <span class="parameter-name">beautify</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="encode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span></span> })
+          <span class="name"><a href="gson/Gson/encode.html">encode</a></span><span class="signature">(<wbr><span class="parameter" id="encode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="encode-param-beautify"><span class="type-annotation">bool</span> <span class="parameter-name">beautify</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="encode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span>, </span> <span class="parameter" id="encode-param-jsonBooleans"><span class="type-annotation">dynamic</span> <span class="parameter-name">jsonBooleans</span>: <span class="default-value">false</span></span> <span class="parameter" id="encode-param-quoteMapKeys"><span class="type-annotation">dynamic</span> <span class="parameter-name">quoteMapKeys</span>: <span class="default-value">false</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
         <dd>
-          Encode gson <a href="gson/GSON/encode.html">[...]</a>
+          Encode gson <a href="gson/Gson/encode.html">[...]</a>
+                  
+</dd>
+        <dt id="simplify" class="callable">
+          <span class="name"><a href="gson/Gson/simplify.html">simplify</a></span><span class="signature">(<wbr><span class="parameter" id="simplify-param-value"><span class="type-annotation">dynamic</span> <span class="parameter-name">value</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd>
+          Simplify converts gson results to something you can easily deal with. some of these changes can't be recreated from the results.
+Also in gson booleans are encoded as bytes and bytes are converted to integers in here, so instead of a true you will probably get 1 and instead of false 0
+The results of this method are compatible with the json library, you can encode them as json
                   
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
-          <span class="name"><a href="gson/GSON/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+          <span class="name"><a href="gson/Gson/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
         <dd class="inherited">
-          Invoked when a non-existent method or property is accessed. <a href="gson/GSON/noSuchMethod.html">[...]</a>
+          Invoked when a non-existent method or property is accessed. <a href="gson/Gson/noSuchMethod.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="toString" class="callable inherited">
-          <span class="name"><a href="gson/GSON/toString.html">toString</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="gson/Gson/toString.html">toString</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
@@ -182,12 +195,12 @@
       <h2>Operators</h2>
       <dl class="callables">
         <dt id="operator ==" class="callable inherited">
-          <span class="name"><a href="gson/GSON/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+          <span class="name"><a href="gson/Gson/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
             <span class="returntype parameter">&#8594; bool</span>
           </span>
                   </dt>
         <dd class="inherited">
-          The equality operator. <a href="gson/GSON/operator_equals.html">[...]</a>
+          The equality operator. <a href="gson/Gson/operator_equals.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
       </dl>
@@ -200,25 +213,28 @@
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
-      <li class="section-title"><a href="gson/GSON-class.html#constructors">Constructors</a></li>
-      <li><a href="gson/GSON/GSON.html">GSON</a></li>
+    
+      <li class="section-title"><a href="gson/Gson-class.html#constructors">Constructors</a></li>
+      <li><a href="gson/Gson/Gson.html">Gson</a></li>
     
       <li class="section-title">
-        <a href="gson/GSON-class.html#instance-properties">Properties</a>
+        <a href="gson/Gson-class.html#instance-properties">Properties</a>
       </li>
-      <li><a href="gson/GSON/decoder.html">decoder</a></li>
-      <li><a href="gson/GSON/encoder.html">encoder</a></li>
-      <li class="inherited"><a href="gson/GSON/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="gson/GSON/runtimeType.html">runtimeType</a></li>
+      <li><a href="gson/Gson/decoder.html">decoder</a></li>
+      <li><a href="gson/Gson/encoder.html">encoder</a></li>
+      <li class="inherited"><a href="gson/Gson/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="gson/Gson/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title"><a href="gson/GSON-class.html#instance-methods">Methods</a></li>
-      <li><a href="gson/GSON/decode.html">decode</a></li>
-      <li><a href="gson/GSON/encode.html">encode</a></li>
-      <li class="inherited"><a href="gson/GSON/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="gson/GSON/toString.html">toString</a></li>
+      <li class="section-title"><a href="gson/Gson-class.html#instance-methods">Methods</a></li>
+      <li><a href="gson/Gson/decode.html">decode</a></li>
+      <li><a href="gson/Gson/encode.html">encode</a></li>
+      <li><a href="gson/Gson/simplify.html">simplify</a></li>
+      <li class="inherited"><a href="gson/Gson/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="gson/Gson/toString.html">toString</a></li>
     
-      <li class="section-title inherited"><a href="gson/GSON-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="gson/GSON/operator_equals.html">operator ==</a></li>
+      <li class="section-title inherited"><a href="gson/Gson-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="gson/Gson/operator_equals.html">operator ==</a></li>
+    
     
     
     
@@ -229,10 +245,11 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.2
+    gson
+      0.1.3
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -240,7 +257,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

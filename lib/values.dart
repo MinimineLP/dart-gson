@@ -2,19 +2,30 @@ library gson_values;
 
 import 'package:gson/prog.dart';
 
-class CustomValue {
-  dynamic design;
-  StrDesign(dynamic design) {
-    this.design = design;
+abstract class GsonValue {
+  /// returns a simple, json compatible representation of the content
+  dynamic toSimple();
+}
+
+class CustomValue extends GsonValue {
+  dynamic content;
+
+  CustomValue(dynamic content) {
+    this.content = content;
   }
 
   @override
   String toString() {
-    return design.toString();
+    return content.toString();
+  }
+
+  @override
+  toSimple() {
+    return toString();
   }
 }
 
-abstract class NumberValue extends CustomValue {
+abstract class NumberValue extends GsonValue {
   ErrorGenerator _gen = new ErrorGenerator();
 }
 
@@ -60,6 +71,11 @@ class Byte extends NumberValue {
   String toString() {
     return "${_number}b";
   }
+
+  @override
+  int toSimple() {
+    return this.value;
+  }
 }
 
 /// Datatype Short
@@ -86,6 +102,11 @@ class Short extends NumberValue {
   String toString() {
     return "${_number}s";
   }
+
+  @override
+  int toSimple() {
+    return this.value;
+  }
 }
 
 /// Datatype Integer
@@ -111,6 +132,11 @@ class Integer extends NumberValue {
   @override
   String toString() {
     return _number.toString();
+  }
+
+  @override
+  int toSimple() {
+    return this.value;
   }
 }
 
@@ -139,6 +165,11 @@ class Long extends NumberValue {
   String toString() {
     return "${_number}l";
   }
+
+  @override
+  int toSimple() {
+    return this.value;
+  }
 }
 
 /// Datatype Float
@@ -163,6 +194,11 @@ class Float extends NumberValue {
   String toString() {
     return "${_number}f";
   }
+
+  @override
+  double toSimple() {
+    return this.value;
+  }
 }
 
 /// Datatype Double
@@ -186,5 +222,10 @@ class Double extends NumberValue {
   @override
   String toString() {
     return "${_number}d";
+  }
+
+  @override
+  double toSimple() {
+    return this.value;
   }
 }

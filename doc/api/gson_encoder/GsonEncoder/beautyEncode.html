@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,23 +53,26 @@
     
     <h5>GsonEncoder class</h5>
     <ol>
-      <li class="section-title"><a href="gson_encoder/GsonEncoder-class.html#constructors">Constructors</a></li>
-      <li><a href="gson_encoder/GsonEncoder/GsonEncoder.html">GsonEncoder</a></li>
     
-      <li class="section-title inherited">
-        <a href="gson_encoder/GsonEncoder-class.html#instance-properties">Properties</a>
-      </li>
-      <li class="inherited"><a href="gson_encoder/GsonEncoder/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="gson_encoder/GsonEncoder/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="gson_encoder/GsonEncoder-class.html#constructors">Constructors</a></li>
+        <li><a href="gson_encoder/GsonEncoder/GsonEncoder.html">GsonEncoder</a></li>
     
-      <li class="section-title"><a href="gson_encoder/GsonEncoder-class.html#instance-methods">Methods</a></li>
-      <li><a href="gson_encoder/GsonEncoder/beautyEncode.html">beautyEncode</a></li>
-      <li><a href="gson_encoder/GsonEncoder/encode.html">encode</a></li>
-      <li class="inherited"><a href="gson_encoder/GsonEncoder/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="gson_encoder/GsonEncoder/toString.html">toString</a></li>
+        <li class="section-title inherited">
+            <a href="gson_encoder/GsonEncoder-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="gson_encoder/GsonEncoder/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="gson_encoder/GsonEncoder/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="gson_encoder/GsonEncoder-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="gson_encoder/GsonEncoder/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="gson_encoder/GsonEncoder-class.html#instance-methods">Methods</a></li>
+        <li><a href="gson_encoder/GsonEncoder/beautyEncode.html">beautyEncode</a></li>
+        <li><a href="gson_encoder/GsonEncoder/encode.html">encode</a></li>
+        <li class="inherited"><a href="gson_encoder/GsonEncoder/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="gson_encoder/GsonEncoder/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="gson_encoder/GsonEncoder-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="gson_encoder/GsonEncoder/operator_equals.html">operator ==</a></li>
+    
+    
     
     
     
@@ -82,27 +85,34 @@
     <section class="multi-line-signature">
       <span class="returntype">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
             <span class="name ">beautyEncode</span>
-(<wbr><span class="parameter" id="beautyEncode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="beautyEncode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span></span> })
+(<wbr><span class="parameter" id="beautyEncode-param-obj"><span class="type-annotation">dynamic</span> <span class="parameter-name">obj</span>, {</span> <span class="parameter" id="beautyEncode-param-indent"><span class="type-annotation">int</span> <span class="parameter-name">indent</span>: <span class="default-value">2</span>, </span> <span class="parameter" id="beautyEncode-param-quoteMapKeys"><span class="type-annotation">bool</span> <span class="parameter-name">quoteMapKeys</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="beautyEncode-param-jsonBooleans"><span class="type-annotation">dynamic</span> <span class="parameter-name">jsonBooleans</span>: <span class="default-value">false</span></span> })
       
+    </section>
+    <section class="desc markdown">
+      <p>encode beautified gson</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">List&lt;String&gt; beautyEncode(dynamic obj, {int indent = 2}) {
+      <pre class="language-dart"><code class="language-dart">List&lt;String&gt; beautyEncode(dynamic obj,
+    {int indent = 2, bool quoteMapKeys = false, jsonBooleans = false}) {
   if (obj is bool) {
-    return [obj ? &quot;1b&quot; : &quot;0b&quot;];
+    return [jsonBooleans ? (obj ? &quot;true&quot; : &quot;false&quot;) : (obj ? &quot;1b&quot; : &quot;0b&quot;)];
   }
   if (obj is double) {
     return [obj.toString() + &quot;d&quot;];
   }
-  if (obj is CustomValue) {
+  if (obj is GsonValue) {
     return [obj.toString()];
   }
   if (obj is List) {
     if (obj.length == 0) return [&quot;[]&quot;];
     List&lt;String&gt; cont = [&quot;[&quot;];
     for (int c = 0; c &lt; obj.length; c++) {
-      List&lt;String&gt; e = beautyEncode(obj[c]);
+      List&lt;String&gt; e = beautyEncode(obj[c],
+          indent: indent,
+          quoteMapKeys: quoteMapKeys,
+          jsonBooleans: jsonBooleans);
       for (int i = 0; i &lt; e.length; i++) {
         cont.add(_repeatString(&quot; &quot;, indent) +
             e[i] +
@@ -117,7 +127,13 @@
     List&lt;String&gt; cont = [&quot;{&quot;];
     int c = 0;
     obj.forEach((k, v) {
-      List&lt;String&gt; e = beautyEncode(v);
+      if (quoteMapKeys) {
+        k = json.encode(k);
+      }
+      List&lt;String&gt; e = beautyEncode(v,
+          indent: indent,
+          quoteMapKeys: quoteMapKeys,
+          jsonBooleans: jsonBooleans);
       for (int i = 0; i &lt; e.length; i++) {
         cont.add(_repeatString(&quot; &quot;, indent) +
             (i == 0 ? k + &quot;: &quot; : &quot;&quot;) +
@@ -127,11 +143,6 @@
       c++;
     });
     cont.add(&quot;}&quot;);
-    &#47;*
-    beautyEncode(v).forEach((e) =&gt; cont.add(_repeatString(&quot; &quot;, indent) + e));});
-      cont.add(&quot;${k}:${encode(v)}&quot;);
-    cont.add(&quot;}&quot;);
-    *&#47;
     return cont;
   }
   return [json.encode(obj)];
@@ -147,10 +158,11 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.2
+    gson
+      0.1.3
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -158,7 +170,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

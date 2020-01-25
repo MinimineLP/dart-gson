@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -56,10 +56,12 @@
       <li><a href="gson_values/CustomValue-class.html">CustomValue</a></li>
       <li><a href="gson_values/Double-class.html">Double</a></li>
       <li><a href="gson_values/Float-class.html">Float</a></li>
+      <li><a href="gson_values/GsonValue-class.html">GsonValue</a></li>
       <li><a href="gson_values/Integer-class.html">Integer</a></li>
       <li><a href="gson_values/Long-class.html">Long</a></li>
       <li><a href="gson_values/NumberValue-class.html">NumberValue</a></li>
       <li><a href="gson_values/Short-class.html">Short</a></li>
+    
     
     
     
@@ -79,7 +81,7 @@
         <dt>Inheritance</dt>
         <dd><ul class="gt-separated dark clazz-relationships">
           <li>Object</li>
-          <li><a href="gson_values/CustomValue-class.html">CustomValue</a></li>
+          <li><a href="gson_values/GsonValue-class.html">GsonValue</a></li>
           <li>NumberValue</li>
         </ul></dd>
 
@@ -94,6 +96,7 @@
           <li><a href="gson_values/Long-class.html">Long</a></li>
           <li><a href="gson_values/Short-class.html">Short</a></li>
         </ul></dd>
+
 
       </dl>
     </section>
@@ -115,24 +118,16 @@
       <h2>Properties</h2>
 
       <dl class="properties">
-        <dt id="design" class="property inherited">
-          <span class="name"><a href="gson_values/CustomValue/design.html">design</a></span>
-          <span class="signature">&#8596; dynamic</span>         
-        </dt>
-        <dd class="inherited">
-          
-                  <div class="features">read / write, inherited</div>
-</dd>
         <dt id="hashCode" class="property inherited">
-          <span class="name"><a href="gson_values/CustomValue/hashCode.html">hashCode</a></span>
+          <span class="name"><a href="gson_values/GsonValue/hashCode.html">hashCode</a></span>
           <span class="signature">&#8594; int</span>         
         </dt>
         <dd class="inherited">
-          The hash code for this object. <a href="gson_values/CustomValue/hashCode.html">[...]</a>
+          The hash code for this object. <a href="gson_values/GsonValue/hashCode.html">[...]</a>
                   <div class="features">read-only, inherited</div>
 </dd>
         <dt id="runtimeType" class="property inherited">
-          <span class="name"><a href="gson_values/CustomValue/runtimeType.html">runtimeType</a></span>
+          <span class="name"><a href="gson_values/GsonValue/runtimeType.html">runtimeType</a></span>
           <span class="signature">&#8594; Type</span>         
         </dt>
         <dd class="inherited">
@@ -146,25 +141,25 @@
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="noSuchMethod" class="callable inherited">
-          <span class="name"><a href="gson_values/CustomValue/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+          <span class="name"><a href="gson_values/GsonValue/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
         <dd class="inherited">
-          Invoked when a non-existent method or property is accessed. <a href="gson_values/CustomValue/noSuchMethod.html">[...]</a>
+          Invoked when a non-existent method or property is accessed. <a href="gson_values/GsonValue/noSuchMethod.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
-        <dt id="StrDesign" class="callable inherited">
-          <span class="name"><a href="gson_values/CustomValue/StrDesign.html">StrDesign</a></span><span class="signature">(<wbr><span class="parameter" id="StrDesign-param-design"><span class="type-annotation">dynamic</span> <span class="parameter-name">design</span></span>)
+        <dt id="toSimple" class="callable inherited">
+          <span class="name"><a href="gson_values/GsonValue/toSimple.html">toSimple</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
         <dd class="inherited">
-          
+          returns a simple, json compatible representation of the content
                   <div class="features">inherited</div>
 </dd>
         <dt id="toString" class="callable inherited">
-          <span class="name"><a href="gson_values/CustomValue/toString.html">toString</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="gson_values/GsonValue/toString.html">toString</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
@@ -179,12 +174,12 @@
       <h2>Operators</h2>
       <dl class="callables">
         <dt id="operator ==" class="callable inherited">
-          <span class="name"><a href="gson_values/CustomValue/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+          <span class="name"><a href="gson_values/GsonValue/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
             <span class="returntype parameter">&#8594; bool</span>
           </span>
                   </dt>
         <dd class="inherited">
-          The equality operator. <a href="gson_values/CustomValue/operator_equals.html">[...]</a>
+          The equality operator. <a href="gson_values/GsonValue/operator_equals.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
       </dl>
@@ -197,23 +192,24 @@
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="gson_values/NumberValue-class.html#constructors">Constructors</a></li>
       <li><a href="gson_values/NumberValue/NumberValue.html">NumberValue</a></li>
     
       <li class="section-title inherited">
         <a href="gson_values/NumberValue-class.html#instance-properties">Properties</a>
       </li>
-      <li class="inherited"><a href="gson_values/CustomValue/design.html">design</a></li>
-      <li class="inherited"><a href="gson_values/CustomValue/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="gson_values/CustomValue/runtimeType.html">runtimeType</a></li>
+      <li class="inherited"><a href="gson_values/GsonValue/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="gson_values/GsonValue/runtimeType.html">runtimeType</a></li>
     
       <li class="section-title inherited"><a href="gson_values/NumberValue-class.html#instance-methods">Methods</a></li>
-      <li class="inherited"><a href="gson_values/CustomValue/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="gson_values/CustomValue/StrDesign.html">StrDesign</a></li>
-      <li class="inherited"><a href="gson_values/CustomValue/toString.html">toString</a></li>
+      <li class="inherited"><a href="gson_values/GsonValue/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="gson_values/GsonValue/toSimple.html">toSimple</a></li>
+      <li class="inherited"><a href="gson_values/GsonValue/toString.html">toString</a></li>
     
       <li class="section-title inherited"><a href="gson_values/NumberValue-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="gson_values/CustomValue/operator_equals.html">operator ==</a></li>
+      <li class="inherited"><a href="gson_values/GsonValue/operator_equals.html">operator ==</a></li>
+    
     
     
     
@@ -224,10 +220,11 @@
 
 <footer>
   <span class="no-break">
-    gson 0.1.2
+    gson
+      0.1.3
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -235,7 +232,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

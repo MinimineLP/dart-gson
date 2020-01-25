@@ -5,6 +5,7 @@ import 'terminal_web.dart' if (dart.library.io) 'terminal_vm.dart' as io;
 import 'package:colorize/colorize.dart';
 import 'package:gson/prog.dart';
 
+/// A parsable object for the GsonDecoder to use
 class GsonParsable extends ErrorGenerator {
   String _parsable;
   int _position = 0;
