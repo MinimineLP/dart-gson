@@ -25,6 +25,17 @@ class GsonDecoder {
       return decodeMap(p);
     } else if (p.actual() == "[") {
       return decodeArray(p);
+    } else if (p.actual() == "t" &&
+        p.peek(1) == "r" &&
+        p.peek(2) == "u" &&
+        p.peek(3) == "e") {
+      return true;
+    } else if (p.actual() == "f" &&
+        p.peek(1) == "a" &&
+        p.peek(2) == "l" &&
+        p.peek(3) == "s" &&
+        p.peek(4) == "e") {
+      return false;
     } else if (new RegExp(r"[0-9\.]").hasMatch(p.actual())) {
       return decodeNumber(p);
     } else if (p.actual() == "\"" ||

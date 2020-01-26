@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3
+
+* Added web compatibility
+* Added generator settings
+* Improved json compatibility
+* Added option to simplify parser results
+
 ## 0.1.2
 
 * Added beauty gson generation (customizable)
