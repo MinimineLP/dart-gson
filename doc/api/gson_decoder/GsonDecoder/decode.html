@@ -108,6 +108,17 @@
     return decodeMap(p);
   } else if (p.actual() == &quot;[&quot;) {
     return decodeArray(p);
+  } else if (p.actual() == &quot;t&quot; &amp;&amp;
+      p.peek(1) == &quot;r&quot; &amp;&amp;
+      p.peek(2) == &quot;u&quot; &amp;&amp;
+      p.peek(3) == &quot;e&quot;) {
+    return true;
+  } else if (p.actual() == &quot;f&quot; &amp;&amp;
+      p.peek(1) == &quot;a&quot; &amp;&amp;
+      p.peek(2) == &quot;l&quot; &amp;&amp;
+      p.peek(3) == &quot;s&quot; &amp;&amp;
+      p.peek(4) == &quot;e&quot;) {
+    return false;
   } else if (new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) {
     return decodeNumber(p);
   } else if (p.actual() == &quot;\&quot;&quot; ||
