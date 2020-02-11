@@ -20,7 +20,7 @@ file
 
 ```yaml
 dependencies:
-  gson: ^0.1.3
+  gson: ^0.1.4
 ```
 
 And to import use
