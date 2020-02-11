@@ -1,4 +1,7 @@
 # Changelog
+## 0.1.4
+
+* Fixed parsing for doubles that are not suffixed with "d"
 
 ## 0.1.3
 
