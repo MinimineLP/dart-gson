@@ -227,7 +227,11 @@ class GsonDecoder {
         }
         break;
       default:
-        ret = new Integer(num.parse(number));
+        if(number.indexOf(".") != -1) {
+          ret = new Double(double.parse(number));
+        } else {
+          ret = new Integer(num.parse(number));
+        }
         break;
     }
 
