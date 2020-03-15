@@ -103,7 +103,7 @@ The results of this method are compatible with the json library, you can encode 
   if (value is Map&lt;String, dynamic&gt;) {
     Map&lt;String, dynamic&gt; map = {};
     value.forEach((k, v) {
-      map[k] = simplify(v);
+      map[k] = this.simplify(v);
     });
   } else if (value is List&lt;dynamic&gt;) {
     List&lt;dynamic&gt; list = [];
@@ -112,8 +112,9 @@ The results of this method are compatible with the json library, you can encode 
     });
   } else if (value is GsonValue) {
     return value.toSimple();
-  } else
+  } else {
     return value;
+  }
 }</code></pre>
     </section>
 
@@ -127,7 +128,7 @@ The results of this method are compatible with the json library, you can encode 
 <footer>
   <span class="no-break">
     gson
-      0.1.3
+      0.1.5
   </span>
 
   <!-- footer-text placeholder -->

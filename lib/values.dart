@@ -26,7 +26,7 @@ class CustomValue extends GsonValue {
 }
 
 abstract class NumberValue extends GsonValue {
-  ErrorGenerator _gen = new ErrorGenerator();
+  ErrorGenerator _gen = ErrorGenerator();
 }
 
 /// Datatype Byte
@@ -58,12 +58,14 @@ class Byte extends NumberValue {
   void set(dynamic v) {
     if (v is bool) {
       v = v ? 1 : 0;
-    } else if (!(v is int))
+    } else if (!(v is int)) {
       throw this
           ._gen
           .error("You must give a boolean or a number to the set function");
-    if (v > 127 || v < -128)
+    }
+    if (v > 127 || v < -128) {
       throw this._gen.error("Byte must be between -128 and 127");
+    }
     this._number = v;
   }
 
@@ -93,8 +95,9 @@ class Short extends NumberValue {
 
   /// the short value (number from -32768 to 32767)
   void set(int v) {
-    if (v > 32767 || v < -32768)
+    if (v > 32767 || v < -32768) {
       throw this._gen.error("Byte must be between -32768 and 32767");
+    }
     this._number = v;
   }
 
@@ -124,8 +127,9 @@ class Integer extends NumberValue {
 
   /// the integer value (number from -2147483648 to 2147483647)
   void set(int v) {
-    if (v > 2147483647 || v < -2147483648)
+    if (v > 2147483647 || v < -2147483648) {
       throw this._gen.error("Byte must be between -2147483648 and 2147483647");
+    }
     this._number = v;
   }
 

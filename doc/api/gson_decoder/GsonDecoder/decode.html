@@ -101,7 +101,7 @@
   GsonParsable p = gson is GsonParsable
       ? gson
       : gson is String
-          ? new GsonParsable(gson)
+          ? GsonParsable(gson)
           : throw (&quot;The gson is not a valid input to decode an Array from&quot;);
 
   if (p.actual() == &quot;{&quot;) {
@@ -119,7 +119,7 @@
       p.peek(3) == &quot;s&quot; &amp;&amp;
       p.peek(4) == &quot;e&quot;) {
     return false;
-  } else if (new RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) {
+  } else if (RegExp(r&quot;[0-9\.]&quot;).hasMatch(p.actual())) {
     return decodeNumber(p);
   } else if (p.actual() == &quot;\&quot;&quot; ||
       p.actual() == &quot;&#39;&quot; ||
@@ -141,7 +141,7 @@
 <footer>
   <span class="no-break">
     gson
-      0.1.3
+      0.1.5
   </span>
 
   <!-- footer-text placeholder -->

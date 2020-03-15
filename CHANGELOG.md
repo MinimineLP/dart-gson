@@ -1,4 +1,8 @@
 # Changelog
+## 0.1.5
+
+* Fixed gson.decode() with simplify option
+
 ## 0.1.4
 
 * Fixed parsing for doubles that are not suffixed with "d"

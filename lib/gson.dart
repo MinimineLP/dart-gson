@@ -11,10 +11,15 @@ export 'values.dart';
 
 class Gson {
   /// The decoder
-  GsonDecoder decoder = new GsonDecoder();
+  GsonDecoder decoder = GsonDecoder();
 
   /// The encoder
-  GsonEncoder encoder = new GsonEncoder();
+  GsonEncoder encoder = GsonEncoder();
+
+  /// The adapter to decode and encode gson
+  Gson() {
+    this.decoder = GsonDecoder();
+  }
 
   /// Simplify converts gson results to something you can easily deal with. some of these changes can't be recreated from the results.
   /// Also in gson booleans are encoded as bytes and bytes are converted to integers in here, so instead of a true you will probably get 1 and instead of false 0
@@ -23,7 +28,7 @@ class Gson {
     if (value is Map<String, dynamic>) {
       Map<String, dynamic> map = {};
       value.forEach((k, v) {
-        map[k] = simplify(v);
+        map[k] = this.simplify(v);
       });
     } else if (value is List<dynamic>) {
       List<dynamic> list = [];
@@ -32,13 +37,9 @@ class Gson {
       });
     } else if (value is GsonValue) {
       return value.toSimple();
-    } else
+    } else {
       return value;
-  }
-
-  /// The adapter to decode and encode gson
-  Gson() {
-    this.decoder = new GsonDecoder();
+    }
   }
 
   /// Encode gson
@@ -77,7 +78,9 @@ class Gson {
   /// json.encode( gson.decode("{hello: "world"}", simplify: true) );  // >> {"hello": "world"}
   /// ```
   dynamic decode(String gson, {simplify = false}) {
-    return decoder.decode(gson);
+    return simplify
+        ? this.simplify(decoder.decode(gson))
+        : decoder.decode(gson);
   }
 }
 
