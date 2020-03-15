@@ -37,7 +37,7 @@ To decode you can use
 gson.decode("{...}");
 ```
 
-and to decode you can use
+and to encode you can use
 
 ```dart
 gson.encode({...});
