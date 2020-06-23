@@ -18,7 +18,7 @@ class Gson {
 
   /// The adapter to decode and encode gson
   Gson() {
-    this.decoder = GsonDecoder();
+    decoder = GsonDecoder();
   }
 
   /// Simplify converts gson results to something you can easily deal with. some of these changes can't be recreated from the results.
@@ -26,12 +26,12 @@ class Gson {
   /// The results of this method are compatible with the json library, you can encode them as json
   dynamic simplify(dynamic value) {
     if (value is Map<String, dynamic>) {
-      Map<String, dynamic> map = {};
+      var map = {};
       value.forEach((k, v) {
-        map[k] = this.simplify(v);
+        map[k] = simplify(v);
       });
     } else if (value is List<dynamic>) {
-      List<dynamic> list = [];
+      var list = [];
       value.forEach((v) {
         list.add(simplify(v));
       });

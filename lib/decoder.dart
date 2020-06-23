@@ -6,62 +6,62 @@ import 'package:gson/gson.dart';
 
 /// The Gson Decoder class recreates the content from a gson string
 class GsonDecoder {
-  static RegExp _KEY_CHARACTERS = RegExp(r"\w");
-  static RegExp _IGNORED = RegExp(r"[ \t\r\n]");
-  static RegExp _PURE_STRING = RegExp(r"[^\{\}\[\]\,]");
+  static final RegExp _KEY_CHARACTERS = RegExp(r'\w');
+  static final RegExp _IGNORED = RegExp(r'[ \t\r\n]');
+  static final RegExp _PURE_STRING = RegExp(r'[^\{\}\[\]\,]');
 
   /// gson decoder (if you want to use it use the instance from gson.decoder)
   GsonDecoder();
 
   /// Insert gson to decode
   dynamic decode(dynamic gson) {
-    GsonParsable p = gson is GsonParsable
+    var p = gson is GsonParsable
         ? gson
         : gson is String
             ? GsonParsable(gson)
-            : throw ("The gson is not a valid input to decode an Array from");
+            : throw ('The gson is not a valid input to decode an Array from');
 
-    if (p.actual() == "{") {
+    if (p.actual() == '{') {
       return decodeMap(p);
-    } else if (p.actual() == "[") {
+    } else if (p.actual() == '[') {
       return decodeArray(p);
-    } else if (p.actual() == "t" &&
-        p.peek(1) == "r" &&
-        p.peek(2) == "u" &&
-        p.peek(3) == "e") {
+    } else if (p.actual() == 't' &&
+        p.peek(1) == 'r' &&
+        p.peek(2) == 'u' &&
+        p.peek(3) == 'e') {
       return true;
-    } else if (p.actual() == "f" &&
-        p.peek(1) == "a" &&
-        p.peek(2) == "l" &&
-        p.peek(3) == "s" &&
-        p.peek(4) == "e") {
+    } else if (p.actual() == 'f' &&
+        p.peek(1) == 'a' &&
+        p.peek(2) == 'l' &&
+        p.peek(3) == 's' &&
+        p.peek(4) == 'e') {
       return false;
-    } else if (RegExp(r"[0-9\.]").hasMatch(p.actual())) {
+    } else if (RegExp(r'[0-9\.]').hasMatch(p.actual())) {
       return decodeNumber(p);
-    } else if (p.actual() == "\"" ||
+    } else if (p.actual() == '"' ||
         p.actual() == "'" ||
         _PURE_STRING.hasMatch(p.actual())) {
       return decodeString(p);
     } else {
-      throw p.error("Unexpected character " + p.actual());
+      throw p.error('Unexpected character ' + p.actual());
     }
   }
 
   /// Decode an array
   List<dynamic> decodeArray(dynamic src) {
-    GsonParsable p = src is GsonParsable
+    var p = src is GsonParsable
         ? src
         : src is String
             ? GsonParsable(src)
-            : throw ("The src is not a valid input to decode an Array from");
-    List<dynamic> arr = [];
-    bool foundComma = true;
-    if (p.next() != "[") {
-      throw p.error("Array has to start with a [");
+            : throw ('The src is not a valid input to decode an Array from');
+    var arr = [];
+    var foundComma = true;
+    if (p.next() != '[') {
+      throw p.error('Array has to start with a [');
     }
-    while (p.actual() != "]") {
+    while (p.actual() != ']') {
       if (!foundComma) {
-        throw p.error("Expected \"]\" or \",\"");
+        throw p.error('Expected "]" or ","');
       }
       foundComma = false;
       _skipIgnored(p);
@@ -72,7 +72,7 @@ class GsonDecoder {
         throw p.error('Expected "[", "\\"","\\\'", "{" or a number');
       }
       _skipIgnored(p);
-      if (p.actual() == ",") {
+      if (p.actual() == ',') {
         foundComma = true;
         p.skip();
       }
@@ -86,24 +86,24 @@ class GsonDecoder {
 
   /// Decode a map
   Map<String, dynamic> decodeMap(dynamic src) {
-    GsonParsable p = src is GsonParsable
+    var p = src is GsonParsable
         ? src
         : src is String
             ? GsonParsable(src)
-            : throw ("The src is not a valid input to decode an Array from");
-    Map<String, dynamic> map = {};
-    bool foundComma = true;
-    if (p.next() != "{") {
-      throw ("Array has to start with a [");
+            : throw ('The src is not a valid input to decode an Array from');
+    var map = {};
+    var foundComma = true;
+    if (p.next() != '{') {
+      throw ('Array has to start with a [');
     }
-    while (p.actual() != "}") {
+    while (p.actual() != '}') {
       if (!foundComma) {
-        throw p.error("Expected \"}\" or \",\"");
+        throw p.error('Expected "}" or ","');
       }
       foundComma = false;
       _skipIgnored(p);
-      String key = "";
-      if (p.actual() == "\"" || p.actual() == "'") {
+      var key = '';
+      if (p.actual() == '"' || p.actual() == "'") {
         key = decodeString(src);
       } else {
         while (_KEY_CHARACTERS.hasMatch(p.actual())) {
@@ -113,7 +113,7 @@ class GsonDecoder {
 
       _skipIgnored(p);
 
-      if (p.actual() != ":") {
+      if (p.actual() != ':') {
         throw p.error('Expected ":"');
       }
       p.skip();
@@ -129,7 +129,7 @@ class GsonDecoder {
 
       _skipIgnored(p);
 
-      if (p.actual() == ",") {
+      if (p.actual() == ',') {
         foundComma = true;
         p.skip();
       }
@@ -141,21 +141,21 @@ class GsonDecoder {
 
   /// Decode a String
   String decodeString(dynamic src) {
-    GsonParsable p = src is GsonParsable
+    var p = src is GsonParsable
         ? src
         : src is String
             ? GsonParsable(src)
-            : throw ("The src is not a valid input to decode an Array from");
+            : throw ('The src is not a valid input to decode an Array from');
 
-    String str = '"';
+    var str = '"';
 
-    if (p.actual() == "\"" || p.actual() == "\'") {
-      String search = p.next();
+    if (p.actual() == '"' || p.actual() == "'") {
+      var search = p.next();
       while (p.actual() != search) {
-        if (p.actual() == "\\") {
+        if (p.actual() == '\\') {
           str += p.next();
-        } else if (p.actual() == "\"") {
-          str += "\\" + p.next();
+        } else if (p.actual() == '"') {
+          str += '\\' + p.next();
           continue;
         }
         str += p.next();
@@ -165,14 +165,14 @@ class GsonDecoder {
       }
     } else if (_PURE_STRING.hasMatch(p.actual())) {
       while (_PURE_STRING.hasMatch(p.actual())) {
-        if (p.actual() == "\\") {
+        if (p.actual() == '\\') {
           str += p.next();
         }
         str += p.next();
       }
     } else {
       throw p.error(
-          "String has to start with a \"\\\"\" or \"\\\'\" when it contains some characters");
+          'String has to start with a \"\\\"\" or \"\\\'\" when it contains some characters');
     }
 
     return json.decode(str + '"');
@@ -180,54 +180,54 @@ class GsonDecoder {
 
   /// Decode a number
   NumberValue decodeNumber(dynamic src) {
-    GsonParsable p = src is GsonParsable
+    var p = src is GsonParsable
         ? src
         : src is String
             ? GsonParsable(src)
-            : throw ("The src is not a valid input to decode an Array from");
-    if (!RegExp(r"[0-9\.]").hasMatch(p.actual())) {
-      throw p.error("Any number has to start with a number between 0 and 9");
+            : throw ('The src is not a valid input to decode an Array from');
+    if (!RegExp(r'[0-9\.]').hasMatch(p.actual())) {
+      throw p.error('Any number has to start with a number between 0 and 9');
     }
-    String number = "";
-    while (RegExp(r"[0-9\.]").hasMatch(p.actual())) {
+    var number = '';
+    while (RegExp(r'[0-9\.]').hasMatch(p.actual())) {
       number += p.next();
     }
 
     NumberValue ret;
 
     switch (p.actual()) {
-      case "b":
+      case 'b':
         ret = Byte(num.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
-      case "s":
+      case 's':
         ret = Short(num.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
-      case "l":
+      case 'l':
         ret = Long(num.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
-      case "f":
+      case 'f':
         ret = Float(num.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
-      case "d":
+      case 'd':
         ret = Double(num.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
       default:
-        if (number.indexOf(".") != -1) {
+        if (number.contains('.')) {
           ret = Double(double.parse(number));
         } else {
           ret = Integer(num.parse(number));

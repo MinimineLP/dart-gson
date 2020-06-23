@@ -20,7 +20,7 @@ class CustomValue extends GsonValue {
   }
 
   @override
-  toSimple() {
+  String toSimple() {
     return toString();
   }
 }
@@ -59,24 +59,22 @@ class Byte extends NumberValue {
     if (v is bool) {
       v = v ? 1 : 0;
     } else if (!(v is int)) {
-      throw this
-          ._gen
-          .error("You must give a boolean or a number to the set function");
+      throw _gen.error('You must give a boolean or a number to the set function');
     }
     if (v > 127 || v < -128) {
-      throw this._gen.error("Byte must be between -128 and 127");
+      throw _gen.error('Byte must be between -128 and 127');
     }
-    this._number = v;
+    _number = v;
   }
 
   @override
   String toString() {
-    return "${_number}b";
+    return '${_number}b';
   }
 
   @override
   int toSimple() {
-    return this.value;
+    return value;
   }
 }
 
@@ -96,19 +94,19 @@ class Short extends NumberValue {
   /// the short value (number from -32768 to 32767)
   void set(int v) {
     if (v > 32767 || v < -32768) {
-      throw this._gen.error("Byte must be between -32768 and 32767");
+      throw _gen.error('Byte must be between -32768 and 32767');
     }
-    this._number = v;
+    _number = v;
   }
 
   @override
   String toString() {
-    return "${_number}s";
+    return '${_number}s';
   }
 
   @override
   int toSimple() {
-    return this.value;
+    return value;
   }
 }
 
@@ -128,9 +126,9 @@ class Integer extends NumberValue {
   /// the integer value (number from -2147483648 to 2147483647)
   void set(int v) {
     if (v > 2147483647 || v < -2147483648) {
-      throw this._gen.error("Byte must be between -2147483648 and 2147483647");
+      throw _gen.error('Byte must be between -2147483648 and 2147483647');
     }
-    this._number = v;
+    _number = v;
   }
 
   @override
@@ -140,7 +138,7 @@ class Integer extends NumberValue {
 
   @override
   int toSimple() {
-    return this.value;
+    return value;
   }
 }
 
@@ -159,20 +157,20 @@ class Long extends NumberValue {
 
   /// the long value (number from -9223372036854775808 to 9223372036854775807)
   void set(int v) {
-    if (v > 9007199254740991 || v < -9007199254740991)
-      throw this._gen.error(
-          "Byte must be between -9223372036854775808 and 9223372036854775807");
-    this._number = v;
+    if (v > 9007199254740991 || v < -9007199254740991) {
+      throw _gen.error('Byte must be between -9223372036854775808 and 9223372036854775807');
+    }
+    _number = v;
   }
 
   @override
   String toString() {
-    return "${_number}l";
+    return '${_number}l';
   }
 
   @override
   int toSimple() {
-    return this.value;
+    return value;
   }
 }
 
@@ -191,17 +189,17 @@ class Float extends NumberValue {
 
   /// the float value (number from -9223372036854775808 to 9223372036854775807)
   void set(double v) {
-    this._number = v;
+    _number = v;
   }
 
   @override
   String toString() {
-    return "${_number}f";
+    return '${_number}f';
   }
 
   @override
   double toSimple() {
-    return this.value;
+    return value;
   }
 }
 
@@ -220,16 +218,16 @@ class Double extends NumberValue {
 
   /// the double value (number from -9223372036854775808 to 9223372036854775807)
   void set(double v) {
-    this._number = v;
+    _number = v;
   }
 
   @override
   String toString() {
-    return "${_number}d";
+    return '${_number}d';
   }
 
   @override
   double toSimple() {
-    return this.value;
+    return value;
   }
 }
