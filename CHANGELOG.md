@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.6
+## 0.1.6-dev
 
 - migrated to Dart 2.12 and null safety
 - added null checks for the error generator

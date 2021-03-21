@@ -77,7 +77,7 @@ function initScrollSave() {
   var mainContent = document.getElementById('dartdoc-main-content');
   var rightSidebar = document.getElementById('dartdoc-sidebar-right');
 
-  // For portablility, use two different ways of attaching saveLeftScroll to events.
+  // For portability, use two different ways of attaching saveLeftScroll to events.
   leftSidebar.onscroll = saveLeftScroll;
   leftSidebar.addEventListener("scroll", saveLeftScroll, true);
   mainContent.onscroll = saveMainContentScroll;
@@ -99,6 +99,13 @@ function initSearch(name) {
     'property' : 4,
     'constructor' : 4
   };
+
+  var baseHref = '';
+  if (!$('body').data('using-base-href')) {
+    // If dartdoc did not add a base-href tag, we will need to add the relative
+    // path ourselves.
+    baseHref = $('body').data('base-href');
+  }
 
   function findMatches(q) {
     var allMatches = []; // list of matches
@@ -170,12 +177,14 @@ function initSearch(name) {
   };
 
   function initTypeahead() {
-    var search = new URI().query(true)["search"];
-    if (search) {
-      var matches = findMatches(search);
-      if (matches.length != 0) {
-        window.location = matches[0].href;
-        return;
+    if ('URLSearchParams' in window) {
+      var search = new URLSearchParams(window.location.search).get('search');
+      if (search) {
+        var matches = findMatches(search);
+        if (matches.length !== 0) {
+          window.location = baseHref + matches[0].href;
+          return;
+        }
       }
     }
 
@@ -226,7 +235,7 @@ function initSearch(name) {
           if (suggestion.length > 0) {
             var href = suggestion.data("href");
             if (href != null) {
-              window.location = href;
+              window.location = baseHref + href;
             }
           }
         }
@@ -235,12 +244,12 @@ function initSearch(name) {
 
     typeaheadElement.bind('typeahead:select', function(ev, suggestion) {
         selectedSuggestion = suggestion;
-        window.location = suggestion.href;
+        window.location = baseHref + suggestion.href;
     });
   }
 
   var jsonReq = new XMLHttpRequest();
-  jsonReq.open('GET', 'index.json', true);
+  jsonReq.open('GET', baseHref + 'index.json', true);
   jsonReq.addEventListener('load', function() {
     searchIndex = JSON.parse(jsonReq.responseText);
     initTypeahead();
