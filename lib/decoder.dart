@@ -91,7 +91,7 @@ class GsonDecoder {
         : src is String
             ? GsonParsable(src)
             : throw ('The src is not a valid input to decode an Array from');
-    var map = {};
+    var map = <String, dynamic>{};
     var foundComma = true;
     if (p.next() != '{') {
       throw ('Array has to start with a [');
@@ -197,31 +197,31 @@ class GsonDecoder {
 
     switch (p.actual()) {
       case 'b':
-        ret = Byte(num.parse(number));
+        ret = Byte(int.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
       case 's':
-        ret = Short(num.parse(number));
+        ret = Short(int.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
       case 'l':
-        ret = Long(num.parse(number));
+        ret = Long(int.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
       case 'f':
-        ret = Float(num.parse(number));
+        ret = Float(double.parse(number));
         if (!p.ended) {
           p.skip();
         }
         break;
       case 'd':
-        ret = Double(num.parse(number));
+        ret = Double(double.parse(number));
         if (!p.ended) {
           p.skip();
         }
@@ -230,7 +230,7 @@ class GsonDecoder {
         if (number.contains('.')) {
           ret = Double(double.parse(number));
         } else {
-          ret = Integer(num.parse(number));
+          ret = Integer(int.parse(number));
         }
         break;
     }

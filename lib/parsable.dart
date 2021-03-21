@@ -2,7 +2,7 @@ library gson_parsable;
 
 import 'terminal_web.dart' if (dart.library.io) 'terminal_vm.dart' as io;
 
-import 'package:colorize/colorize.dart';
+import 'package:ansicolor/ansicolor.dart';
 import 'package:gson/prog.dart';
 
 /// A parsable object for the GsonDecoder to use
@@ -66,14 +66,14 @@ class GsonParsable extends ErrorGenerator {
   }
 
   /// generate a error at the position of the parsable
-  @override 
+  @override
   Exception error(String message, {int from = 0, int to = 0}) {
     return Exception(
         message + ' at ' + toString(from: from, to: to, err: true));
   }
 
   /// reformat error
-  Exception reformatError(Exception e, [StackTrace stack]) {
+  Exception reformatError(Exception e, [StackTrace? stack]) {
     return Exception(e.toString().substring(10) +
         'at ' +
         toString() +
@@ -83,6 +83,8 @@ class GsonParsable extends ErrorGenerator {
   /// String representation of parsable (marks actual position)
   @override
   String toString({int from = 0, int to = 0, bool err = false}) {
+    final red = AnsiPen()..red();
+    final redBg = AnsiPen()..red(bg: true);
     if (parsable.length > io.terminalColumns) {
       var start = parsable.length > io.terminalColumns
           ? (position - (io.terminalColumns / 2) + 3).round()
@@ -131,15 +133,15 @@ class GsonParsable extends ErrorGenerator {
           '...$endletters\n';
 
       var beforeSelect = code.substring(0, pos - from);
-      var selected = Colorize(code.substring(pos - from, pos + to + 1));
+      var selected = code.substring(pos - from, pos + to + 1);
       var afterSelect = code.substring(pos + to + 1);
 
-      var bottom = Colorize(_repeatString(' ', pos - from) +
+      var bottom = _repeatString(' ', pos - from) +
           _repeatString('^', 1 + from + to) +
-          '\n');
+          '\n';
       if (err) {
-        bottom.red();
-        selected.bgRed();
+        bottom = red(bottom);
+        selected = redBg(selected);
       }
 
       return 'position ${position + 1}/${parsable.length} (\"${actual()}\")\n\nHere:\n' +
@@ -150,15 +152,16 @@ class GsonParsable extends ErrorGenerator {
     }
 
     var beforeSelect = parsable.substring(0, position - from);
-    var selected = Colorize(parsable.substring(position - from, position + to + 1));
+    var selected = parsable.substring(position - from, position + to + 1);
     var afterSelect = parsable.substring(position + to + 1);
 
-    var bottom = Colorize(_repeatString(' ', position - from) +
-        _repeatString('^', 1 + from + to) + '\n');
+    var bottom = _repeatString(' ', position - from) +
+        _repeatString('^', 1 + from + to) +
+        '\n';
 
     if (err) {
-      bottom.red();
-      selected.bgRed();
+      bottom = red(bottom);
+      selected = redBg(selected);
     }
 
     return 'position ${position + 1}/${parsable.length} (\"${actual()}\")\n\nHere:\n' +

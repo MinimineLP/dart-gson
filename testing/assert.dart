@@ -9,6 +9,7 @@ class Assertions {
     errors++;
     print(
         "-----------------------\nAssertion $num failed:\nexpected: $expected\nactual:   $actual\n-----------------------\n");
+    return false;
   }
 
   static void finish() {
